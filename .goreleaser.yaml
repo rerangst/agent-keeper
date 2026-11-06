@@ -1,0 +1,35 @@
+# Release: tag vX.Y.Z → static linux binaries with stable names, so
+# releases/latest/download/agent-keeper_linux_<arch> works without the API.
+version: 2
+
+project_name: agent-keeper
+
+builds:
+  - id: agent-keeper
+    main: ./cmd/agent-keeper
+    binary: agent-keeper
+    env:
+      - CGO_ENABLED=0
+    goos: [linux]
+    goarch: [amd64, arm64]
+    flags: [-trimpath]
+    ldflags:
+      - -s -w -X main.version={{ .Version }}
+
+archives:
+  - id: binaries
+    formats: [binary]
+    name_template: "agent-keeper_{{ .Os }}_{{ .Arch }}"
+
+checksum:
+  name_template: checksums.txt
+
+changelog:
+  use: github
+  filters:
+    exclude: ["^docs:", "^test:", "^ci:"]
+
+release:
+  github:
+    owner: rerangst
+    name: agent-keeper

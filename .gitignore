@@ -1,0 +1,9 @@
+# Local-only planning notes: contain host paths and session ids.
+plans/
+# Build output
+dist/
+/agent-keeper
+*.test
+*.out
+# Local agent settings
+.claude/

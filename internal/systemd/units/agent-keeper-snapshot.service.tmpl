@@ -1,0 +1,12 @@
+[Unit]
+Description=agent-keeper: record Claude Code sessions running in tmux
+Documentation=https://github.com/rerangst/agent-keeper
+
+[Service]
+Type=simple
+ExecStart={{.Exec}} daemon
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

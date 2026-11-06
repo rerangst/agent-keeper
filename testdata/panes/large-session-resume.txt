@@ -1,0 +1,7 @@
+ This session is 3 days old and 412k tokens.
+ Resuming the full session will consume a substantial portion of your usage
+ limits. We recommend resuming from a summary.
+
+ ❯ Resume from summary (recommended)
+   Resume full session as-is
+   Don't ask me again

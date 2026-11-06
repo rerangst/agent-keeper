@@ -1,0 +1,16 @@
+[Unit]
+Description=agent-keeper: restore Claude Code sessions in tmux after boot
+Documentation=https://github.com/rerangst/agent-keeper
+
+[Service]
+Type=oneshot
+# tmux servers it starts run in their own systemd-run scope, so finishing or
+# restarting this unit never kills restored sessions. KillMode=process is a
+# second guard in case no scope could be created.
+ExecStart={{.Exec}} restore --boot
+KillMode=process
+# Each entry has its own timeouts (verify, backoff); a long queue must not be cut.
+TimeoutStartSec=infinity
+
+[Install]
+WantedBy=default.target
